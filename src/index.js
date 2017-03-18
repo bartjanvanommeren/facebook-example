@@ -5,6 +5,7 @@ import App from './App';
 import Login from './Login'
 import Users from './Users'
 import Feed from './Feed'
+import New from './New'
 import './index.css';
 
 class Index extends Component {
@@ -12,7 +13,6 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            data: {
                 ingelogdeUser: [undefined],
                 users: ['Bert', 'Ernie', 'Sander', 'Fritz'],
                 posts: [{
@@ -49,16 +49,22 @@ class Index extends Component {
                     }],
                     likes: []
                 }]
-            }
         }
     }
 
     onLogin(naam) {
-        {console.log("Naam: " + naam)}
-        this.state.data.ingelogdeUser= naam;
+        this.state.ingelogdeUser= naam;
 
         this.setState({
             ingelogdeUser: this.state.ingelogdeUser,
+        });
+    }
+
+    newPost(post) {
+        this.state.data.posts.push(post);
+
+        this.setState({
+            posts: this.state.data.posts,
         });
     }
 }
@@ -68,9 +74,10 @@ var data = new Index();
 ReactDOM.render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={Feed} data={data.state.data} />
-            <Route path="/login" component={Login} onLogin={data.onLogin.bind(this)}/>
+            <IndexRoute component={Feed} data={data.state} />
+            <Route path="/login" component={Login} onLogin={data.onLogin.bind(data)}/>
             <Route path="/users/:userName" component={Users} />
+            <Route path="/new" component={New} newPost={data.newPost.bind(data)} onLogin={data.onLogin.bind(data)}/>
         </Route>
     </Router>
 ), document.getElementById('root'))
