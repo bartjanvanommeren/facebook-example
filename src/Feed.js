@@ -26,6 +26,7 @@ class Feed extends Component {
                     </div>
                 )
                 }
+                {console.log("Ingelogde user: " + this.props.route.data.ingelogdeUser)}
             </div>
         );
     }
