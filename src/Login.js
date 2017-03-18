@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 
 class Login extends Component {
     render() {
         return (
-            <div>
-                <p>
-                    Dit is de login pagina!
-                </p>
-            </div>
+            <form className="App-login">
+                <input type="text" />
+                <Link to="/" ><input type="button" value="Login" to="/" /></Link>
+            </form>
         );
     }
 }
