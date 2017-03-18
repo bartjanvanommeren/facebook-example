@@ -20,8 +20,24 @@ class Feed extends Component {
                 <p>
                     <Link to="/users/Christiaan">Userpagina van Christiaan</Link>
                 </p>
+                {this.props.route.data.posts.map((post, index) =>
+                    <div key = {index}>
+                        <Post post={post} />
+                    </div>
+                )
+                }
             </div>
         );
+    }
+}
+
+class Post extends Component{
+    render(){
+        return(
+            <p className="App-intro">
+                Author = {this.props.post.author} en message = {this.props.post.message}
+            </p>
+        )
     }
 }
 
