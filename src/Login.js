@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 class Login extends Component {
     login(event){
         event.preventDefault();
         this.props.route.onLogin(event.target.name.value);
+        browserHistory.push('/');
     }
+
 
     render() {
         return (
@@ -19,5 +21,7 @@ class Login extends Component {
         );
     }
 }
+
+
 
 export default Login;
