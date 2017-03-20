@@ -5,7 +5,6 @@ class Login extends Component {
     login(event){
         event.preventDefault();
         this.props.route.onLogin(event.target.name.value);
-        browserHistory.push('/');
     }
 
 

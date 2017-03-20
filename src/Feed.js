@@ -12,7 +12,7 @@ class Feed extends Component {
                     <h2>Logged in as {this.props.route.data.ingelogdeUser}</h2>
                 </div>
                 <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
+                    <Link to="/New">New Post</Link>
                 </p>
                 <p>
                     <Link to="/Login">Login</Link>

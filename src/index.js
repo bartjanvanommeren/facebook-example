@@ -58,6 +58,8 @@ class Index extends Component {
         this.setState({
             ingelogdeUser: this.state.ingelogdeUser,
         });
+
+        browserHistory.push('/');
     }
 
     newPost(post) {
@@ -77,7 +79,7 @@ ReactDOM.render((
             <IndexRoute component={Feed} data={data.state} />
             <Route path="/login" component={Login} onLogin={data.onLogin.bind(data)}/>
             <Route path="/users/:userName" component={Users} />
-            <Route path="/new" component={New} newPost={data.newPost.bind(data)} onLogin={data.onLogin.bind(data)}/>
+            <Route path="/new" component={New} newPost={data.newPost.bind(data)}/>
         </Route>
     </Router>
 ), document.getElementById('root'))
