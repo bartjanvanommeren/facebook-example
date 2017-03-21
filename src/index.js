@@ -13,7 +13,7 @@ class Index extends Component {
         super(props);
 
         this.state = {
-                ingelogdeUser: undefined,
+                ingelogdeUser: "Dev",
                 users: ['Bert', 'Ernie', 'Sander', 'Fritz'],
                 posts: [{
                     title: "post",
@@ -63,11 +63,8 @@ class Index extends Component {
     }
 
     newPost(post) {
-        this.state.data.posts.push(post);
-
-        this.setState({
-            posts: this.state.data.posts,
-        });
+        this.state.posts.push(post);
+        browserHistory.push('/');
     }
 
     like(naam, post) {
@@ -87,7 +84,7 @@ ReactDOM.render((
             <IndexRoute component={Feed} data={data.state} like={data.like.bind(data)}/>
             <Route path="/login" component={Login} onLogin={data.onLogin.bind(data)}/>
             <Route path="/users/:userName" component={Users} />
-            <Route path="/new" component={New} newPost={data.newPost.bind(data)}/>
+            <Route path="/new" component={New} data={data.state} newPost={data.newPost.bind(data)}/>
         </Route>
     </Router>
 ), document.getElementById('root'))
