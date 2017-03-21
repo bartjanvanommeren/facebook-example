@@ -13,7 +13,7 @@ class Index extends Component {
         super(props);
 
         this.state = {
-                ingelogdeUser: [undefined],
+                ingelogdeUser: undefined,
                 users: ['Bert', 'Ernie', 'Sander', 'Fritz'],
                 posts: [{
                     title: "post",
@@ -69,6 +69,14 @@ class Index extends Component {
             posts: this.state.data.posts,
         });
     }
+
+    like(naam, post) {
+        this.state.posts[post].likes.push(naam);
+
+        this.setState({
+            posts : this.state.posts
+        });
+    }
 }
 
 var data = new Index();
@@ -76,7 +84,7 @@ var data = new Index();
 ReactDOM.render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={Feed} data={data.state} />
+            <IndexRoute component={Feed} data={data.state} like={data.like.bind(data)}/>
             <Route path="/login" component={Login} onLogin={data.onLogin.bind(data)}/>
             <Route path="/users/:userName" component={Users} />
             <Route path="/new" component={New} newPost={data.newPost.bind(data)}/>

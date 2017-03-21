@@ -9,14 +9,14 @@ class Login extends Component {
 
 
     render() {
-        return (
-            <form className="App-login" onSubmit={this.login.bind(this)}>
-                <input name="name" type="text" />
-                <button type="submit">Login</button>
-                <p>
-                    <Link to="/">home</Link>
-                </p>
-            </form>
+        return (            <form className="App-login" onSubmit={this.login.bind(this)}>
+            <input name="name" type="text" />
+            <button type="submit">Login</button>
+            <p>
+                <Link to="/">home</Link>
+            </p>
+        </form>
+
         );
     }
 }

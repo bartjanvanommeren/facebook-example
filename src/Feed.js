@@ -23,7 +23,7 @@ class Feed extends Component {
                 {this.props.route.data.posts.map((post, index) =>
                     <div key = {index}>
                         <hr/>
-                        <Post post={post} />
+                        <Post post={post} user={this.props.route.data.ingelogdeUser} like={this.props.route.like} id={index}/>
                     </div>
                 )}
             </div>
@@ -31,7 +31,18 @@ class Feed extends Component {
     }
 }
 
+
 class Post extends Component{
+    like(event){
+        event.preventDefault();
+        if(this.props.post.likes.includes(this.props.user)){
+            console.log("Heeft al geliked!")
+        }
+        else{
+            this.props.like(this.props.user, this.props.id);
+        }
+    }
+
     render(){
         return(
             <div id="post">
@@ -44,6 +55,9 @@ class Post extends Component{
                 <p className="App-intro">
                     Message = {this.props.post.message}
                 </p>
+                <form className="App-login" onSubmit={this.like.bind(this)}>
+                    <button type="submit">Like</button>
+                </form>
                 <p className="App-intro">
                     Likes = {this.props.post.likes.length}
                 </p>
