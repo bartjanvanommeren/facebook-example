@@ -74,18 +74,24 @@ class Index extends Component {
             posts : this.state.posts
         });
     }
+
+    render() {
+        return (
+            <Router history={browserHistory}>
+                <Route path="/" component={App}>
+                    <IndexRoute component={Feed} data={this.state} like={this.like.bind(this)}/>
+                    <Route path="/login" component={Login} onLogin={this.onLogin.bind(this)}/>
+                    <Route path="/users/:userName" component={Users} />
+                    <Route path="/new" component={New} data={this.state} newPost={this.newPost.bind(this)}/>
+                </Route>
+            </Router>
+        );
+    }
 }
 
-var data = new Index();
+// var data = new Index();
 
 ReactDOM.render((
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={Feed} data={data.state} like={data.like.bind(data)}/>
-            <Route path="/login" component={Login} onLogin={data.onLogin.bind(data)}/>
-            <Route path="/users/:userName" component={Users} />
-            <Route path="/new" component={New} data={data.state} newPost={data.newPost.bind(data)}/>
-        </Route>
-    </Router>
+    <Index/>
 ), document.getElementById('root'))
 
